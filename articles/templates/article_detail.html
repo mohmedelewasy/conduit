@@ -1,0 +1,9 @@
+<a href = {% url 'articles:update_article' article.slug %} >update article</a>
+<a href = {% url 'articles:delete_article' article.slug %} >delete article</a>
+
+
+<p>Title : {{article}}</p>
+<p>Slug : {{article.slug}}</p>
+<p>Description : {{article.description}}</p>
+<p>Body : {{article.body}}</p>
+<p>Tags : {% for tag in article.tag.all %}<t>{{tag}}, </t>{% endfor %}</p>
