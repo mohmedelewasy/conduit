@@ -1,0 +1,10 @@
+<a href='{% url 'profile:update_profile' profile.slug %}'>update account</a>
+<a href='#'>delete account</a>
+<p>username: {{profile.username}}</p>
+<p>first name: {{profile.first_name}}</p>
+<p>last name: {{profile.last_name}}</p>
+<p>email: {{profile.email}}</p>
+{% if profile.image %}
+<img src = {{profile.image.url}} height="200px" width="200px">
+{% endif %}
+<p>bio: {{profile.bio}}</p>

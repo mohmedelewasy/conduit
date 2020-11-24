@@ -6,6 +6,7 @@
 
 {% for article in articles %}
     <a href = {% url 'articles:specific_article' article.slug %}> <p>Title : {{article}}</p> </a>
+    <p>Owner : {{article.author}}</p>
     <p>Slug : {{article.slug}}</p>
     <p>Description : {{article.description}}</p>
     <p>Body : {{article.body}}</p>

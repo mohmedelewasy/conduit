@@ -1,5 +1,7 @@
 from django.db import models
 from django.db import models
+from django.utils.text import slugify
+from django.urls import reverse_lazy
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from core.models import TimeStampModel
 
@@ -46,6 +48,7 @@ class Profile(AbstractBaseUser, PermissionsMixin, TimeStampModel):
     bio = models.TextField(null=True, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    slug = models.SlugField(blank=True, null=True, unique=True)
 
     follows = models.ManyToManyField("self", related_name='followed_by', null=True, blank=True)
     favourite = models.ManyToManyField("articles.Article", related_name='favourited_by', null=True, blank=True)
@@ -54,3 +57,12 @@ class Profile(AbstractBaseUser, PermissionsMixin, TimeStampModel):
 
     def __str__(self):
         return self.username
+
+    def save(self, **kwargs):
+        if self.slug == '' or self.slug == None:
+            self.slug = slugify(self.username)
+        super(Profile, self).save(**kwargs)
+
+    def get_absolute_url(self):
+        return reverse_lazy("profile:profile", kwargs={"slug": self.slug})
+    

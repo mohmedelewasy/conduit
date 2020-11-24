@@ -8,7 +8,8 @@ class Article(TimeStampModel):
     title = models.CharField(max_length=50)
     description = models.TextField()
     body = models.TextField()
-    #author foreignkey
+
+    author = models.ForeignKey("profiles.Profile", on_delete=models.CASCADE)
     tag = models.ManyToManyField("articles.Tag")
 
     def __str__(self):
@@ -39,7 +40,8 @@ class Tag(TimeStampModel):
 class Comment(TimeStampModel):
     comment = models.CharField(max_length=90)
     article = models.ForeignKey("articles.Article", on_delete=models.CASCADE)
-    #author foreignkey
+    author = models.ForeignKey("profiles.Profile", on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.article
+        return self.author
     
