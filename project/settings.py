@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'profiles',
     'core',
     'articles',
-    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
