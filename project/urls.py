@@ -19,9 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from profiles.models import Profile
 
+
 urlpatterns = [
+    # path('api/', include('rest_framework.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', include('profiles.urls', namespace='profile')),
+    # path('password_change/done/', auth_views.PasswordChangeView.as_view(template_name='', name = 'password_change_done'))
     path('articles/', include('articles.urls', namespace='articles')),
     path('admin/', admin.site.urls),
 ]

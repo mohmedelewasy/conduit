@@ -45,3 +45,9 @@ class Comment(TimeStampModel):
     def __str__(self):
         return self.author
     
+
+
+####
+# @receiver(post_delete, sender=ِModel)
+# def subnission_delete(sender, instance, **kwargs):
+#     instance.image.delete(False)
