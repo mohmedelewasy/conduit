@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from articles import models
 
-
 class ArticleListSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Article

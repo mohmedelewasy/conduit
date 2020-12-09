@@ -4,6 +4,12 @@ from django.utils.text import slugify
 from django.urls import reverse_lazy
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from core.models import TimeStampModel
+from django.contrib.auth.models import User
+
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 class CustomManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
@@ -65,4 +71,5 @@ class Profile(AbstractBaseUser, PermissionsMixin, TimeStampModel):
 
     def get_absolute_url(self):
         return reverse_lazy("profile:profile", kwargs={"slug": self.slug})
+
     
